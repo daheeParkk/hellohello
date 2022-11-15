@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-@Controller // 주석
+@Controller
 public class HelloController {
     @RequestMapping(value = "helloBody", method = RequestMethod.GET)
     @ResponseBody
