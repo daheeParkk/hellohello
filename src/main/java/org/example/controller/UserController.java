@@ -17,7 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public String getUserList() {
         return "ok";
     }
@@ -27,19 +27,19 @@ public class UserController {
         return "ok";
     }
 
-    @PostMapping("/post")
+    @PostMapping("/c")
     public String createUser(@RequestBody User user) {
         userService.createUser(user);
         return "ok";
     }
 
-    @PatchMapping("/patch")
+    @PatchMapping("/u")
     public String updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return "ok";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/d/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         return "ok";
     }

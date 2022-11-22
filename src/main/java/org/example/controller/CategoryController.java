@@ -17,7 +17,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public String getCategoryList() {
         return "ok";
     }
@@ -27,19 +27,19 @@ public class CategoryController {
         return "ok";
     }
 
-    @PostMapping("/post")
+    @PostMapping("/c")
     public String createCategory(@RequestBody Category category) {
         categoryService.createCategory(category);
         return "ok";
     }
     @PutMapping
-    @PatchMapping("/patch")
+    @PatchMapping("/u")
     public String updateCategory(@RequestBody Category category) {
         categoryService.updateCategory(category);
         return "ok";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/d/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
         return "ok";
     }

@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface BoardMapper {
 
-    Board selectBoardList();
+    List<Board> selectBoardList();
 
     Board selectBoard(Long id);
 

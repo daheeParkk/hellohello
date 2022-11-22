@@ -10,14 +10,14 @@
 
     <insert id="createBoardHashtag" parameterType="org.example.domain.BoardHashtag">
         INSERT INTO board_hashtag
-            (boardId, hashtagId)
+            (board_id, hashtag_id)
         VALUES (#{boardId}, #{hashtagId});
     </insert>
 
     <update id="updateBoardHashtag" parameterType="org.example.domain.BoardHashtag">
         UPDATE board_hashtag set
-            boardId = #{boardId},
-            hashtagId = #{hashtagId}
+            board_id = #{boardId},
+            hashtag_id = #{hashtagId}
         where id = #{id}
     </update>
 

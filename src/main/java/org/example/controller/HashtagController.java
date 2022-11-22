@@ -22,19 +22,19 @@ public class HashtagController {
         return "ok";
     }
 
-    @PostMapping("/post")
+    @PostMapping("/c")
     public String createHashtag(@RequestBody Hashtag hashtag) {
         hashtagService.createHashtag(hashtag);
         return "ok";
     }
 
-    @PutMapping("/")
+    @PutMapping("/u")
     public String updateHashtag(@RequestBody Hashtag hashtag) {
         hashtagService.updateHashtag(hashtag);
         return "ok";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/d/{id}")
     public String deleteHashtag(@PathVariable("id") Long id) {
         return "ok";
     }

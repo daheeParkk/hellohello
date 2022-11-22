@@ -6,6 +6,8 @@ import org.example.service.inter.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -16,7 +18,7 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
-    public User getUserList() {
+    public List<User> getUserList() {
         return userMapper.selectUserList();
     }
 

@@ -24,8 +24,8 @@
         UPDATE board set
             title = #{title},
             content = #{content},
-            userId as userId = #{userId},
-            categoryId as categoryId= #{categoryId}
+            user_id = #{userId},
+            category_id = #{categoryId}
         where id = #{id}
     </update>
 
@@ -38,11 +38,11 @@
         <id column="id" property="id" />
         <result column="title" property="title" />
         <result column="content" property="content" />
-        <association property="userId" column="userId" javaType="org.example.domain.User">
+        <association property="userId" column="user_id" javaType="org.example.domain.User">
             <id column="id" property="id" />
             <result column="nickname" property="nickname" />
         </association>
-        <association property="categoryId" column="categoryId" javaType="org.example.domain.Category">
+        <association property="categoryId" column="category_id" javaType="org.example.domain.Category">
             <id column="id" property="id" />
             <result column="content" property="content" />
         </association>

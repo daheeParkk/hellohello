@@ -22,19 +22,19 @@ public class BoardHashtagController {
     }
 
 
-    @PostMapping("/post")
+    @PostMapping("/c")
     public String createBoardHashtag(@RequestBody BoardHashtag boardHashtag) {
         boardHashtagService.createBoardHashtag(boardHashtag);
         return "ok";
     }
 
-    @PatchMapping("/patch")
+    @PutMapping("/u")
     public String updateBoardHashtag(@RequestBody BoardHashtag boardHashtag) {
         boardHashtagService.updateBoardHashtag(boardHashtag);
         return "ok";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/d/{id}")
     public String deleteBoardHashtag(@PathVariable("id") Long id) {
         return "ok";
     }

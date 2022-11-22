@@ -22,19 +22,19 @@ public class CommentController {
         return "ok";
     }
 
-    @PostMapping("/post")
+    @PostMapping("/c")
     public String createComment(@RequestBody Comment comment) {
         commentService.createComment(comment);
         return "ok";
     }
 
-    @PatchMapping("/patch")
+    @PatchMapping("/u")
     public String updateComment(@RequestBody Comment comment) {
         commentService.updateComment(comment);
         return "ok";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/d/{id}")
     public String deleteComment(@PathVariable("id") Long id) {
         return "ok";
     }

@@ -11,15 +11,15 @@
 
     <insert id="createComment" parameterType="org.example.domain.Comment">
         INSERT INTO comment
-            (content, userId, boardId)
+            (content, user_id, board_id)
         VALUES (#{content}, #{userId}, #{boardId});
     </insert>
 
     <update id="updateComment" parameterType="org.example.domain.Comment">
         UPDATE comment set
             content = #{content},
-            userId = #{userId},
-            boardId = #{boardId}
+            user_id = #{userId},
+            board_id = #{boardId}
         where id = #{id}
     </update>
 
