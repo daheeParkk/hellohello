@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.repository.BoardMapper">
+
+    <select id="selectBoardList" resultMap="boardResultMap">
+        SELECT *
+        FROM board
+    </select>
+
+    <select id="selectBoard" parameterType="Long" resultMap="boardResultMap">
+        SELECT id, title, content
+        FROM board
+        WHERE id = #{id}
+    </select>
+
+    <insert id="createBoard" parameterType="org.example.domain.Board">
+        INSERT INTO board
+            (title, content)
+        VALUES (#{title}, #{content});
+    </insert>
+
+    <update id="updateBoard" parameterType="org.example.domain.Board">
+        UPDATE board set
+            title = #{title},
+            content = #{content},
+            userId as userId = #{userId},
+            categoryId as categoryId= #{categoryId}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBoard" parameterType="Long">
+        DELETE from board
+        where id = #{id}
+    </delete>
+    
+    <resultMap id="boardResultMap" type="org.example.domain.Board">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <association property="userId" column="userId" javaType="org.example.domain.User">
+            <id column="id" property="id" />
+            <result column="nickname" property="nickname" />
+        </association>
+        <association property="categoryId" column="categoryId" javaType="org.example.domain.Category">
+            <id column="id" property="id" />
+            <result column="content" property="content" />
+        </association>
+        <collection property="boardId" ofType="org.example.domain.Comment">
+            <id column="id" property="id" />
+            <result column="content" property="content" />
+        </collection>
+    </resultMap>
+
+    <select id="boardWriter" resultMap="boardResultMap" parameterType="java.lang.Long">
+        select
+            B.userId,
+            A.nickname ,
+            B.title ,
+            B.content,
+            M.content,
+            C.content
+        from board B left outer join user A on B.userId = A.id left outer join category C on B.categoryId = C.id left outer join comment M on B.id = M.boardId;
+        where B.id = #{id};
+    </select>
+
+</mapper>
