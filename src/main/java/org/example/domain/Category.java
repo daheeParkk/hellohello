@@ -5,6 +5,11 @@ public class Category {
     private Long id;
     private String content;
 
+    public Category(Long id, String content) {
+        this.id = id;
+        this.content = content;
+    }
+
     public Long getId() {
         return id;
     }

@@ -8,6 +8,14 @@ public class Board {
     private Long userId;
     private Long categoryId;
 
+    public Board(Long id, String title, String content, Long userId, Long categoryId) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.userId = userId;
+        this.categoryId = categoryId;
+    }
+
     public Long getId() {
         return id;
     }

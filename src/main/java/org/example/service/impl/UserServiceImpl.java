@@ -18,11 +18,11 @@ public class UserServiceImpl implements UserService {
         this.userMapper = userMapper;
     }
 
-    public List<User> getUserList() {
+    public List<User> selectUserList() {
         return userMapper.selectUserList();
     }
 
-    public User getUser(Long id) {
+    public User selectUser(Long id) {
         return userMapper.selectUser(id);
     }
 

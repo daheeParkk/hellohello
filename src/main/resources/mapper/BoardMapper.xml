@@ -3,12 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.repository.BoardMapper">
 
+    <resultMap id="boardResultMap" type="org.example.domain.Board">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+        <association property="userId" column="user_id" javaType="org.example.domain.User">
+            <id column="id" property="id" />
+            <result column="nickname" property="nickname" />
+        </association>
+        <association property="categoryId" column="category_id" javaType="org.example.domain.Category">
+            <id column="id" property="id" />
+            <result column="content" property="content" />
+        </association>
+        <collection property="boardId" ofType="org.example.domain.Comment">
+            <id column="id" property="id" />
+            <result column="content" property="content" />
+        </collection>
+    </resultMap>
+
     <select id="selectBoardList" resultMap="boardResultMap">
-        SELECT *
+        SELECT id, title,content
         FROM board
     </select>
 
-    <select id="selectBoard" parameterType="Long" resultMap="boardResultMap">
+    <select id="selectBoard" parameterType="java.lang.Long" resultMap="boardResultMap">
         SELECT id, title, content
         FROM board
         WHERE id = #{id}
@@ -29,28 +47,10 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteBoard" parameterType="Long">
+    <delete id="deleteBoard" parameterType="java.lang.Long">
         DELETE from board
         where id = #{id}
     </delete>
-    
-    <resultMap id="boardResultMap" type="org.example.domain.Board">
-        <id column="id" property="id" />
-        <result column="title" property="title" />
-        <result column="content" property="content" />
-        <association property="userId" column="user_id" javaType="org.example.domain.User">
-            <id column="id" property="id" />
-            <result column="nickname" property="nickname" />
-        </association>
-        <association property="categoryId" column="category_id" javaType="org.example.domain.Category">
-            <id column="id" property="id" />
-            <result column="content" property="content" />
-        </association>
-        <collection property="boardId" ofType="org.example.domain.Comment">
-            <id column="id" property="id" />
-            <result column="content" property="content" />
-        </collection>
-    </resultMap>
 
     <select id="boardWriter" resultMap="boardResultMap" parameterType="java.lang.Long">
         select

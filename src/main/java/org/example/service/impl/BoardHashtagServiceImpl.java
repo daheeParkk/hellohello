@@ -16,7 +16,7 @@ public class BoardHashtagServiceImpl implements BoardHashtagService {
         this.boardHashtagMapper = boardHashtagMapper;
     }
 
-    public BoardHashtag getBoardHashtag() {
+    public BoardHashtag selectBoardHashtag() {
         return boardHashtagMapper.selectBoardHashtag();
     }
 

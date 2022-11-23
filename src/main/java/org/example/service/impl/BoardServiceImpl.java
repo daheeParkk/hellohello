@@ -19,11 +19,11 @@ public class BoardServiceImpl implements BoardService {
         this.boardMapper = boardMapper;
     }
 
-    public List<Board> getBoardList() {
+    public List<Board> selectBoardList() {
         return boardMapper.selectBoardList();
     }
 
-    public Board getBoard(Long id) {
+    public Board selectBoard(Long id) {
 
         return boardMapper.selectBoard(id);
     }

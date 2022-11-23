@@ -16,7 +16,7 @@ public class HashtagServiceImpl implements HashtagService {
         this.hashtagMapper = hashtagMapper;
     }
 
-    public Hashtag getHashtag(Long id) {
+    public Hashtag selectHashtag(Long id) {
         return hashtagMapper.selectHashtag(id);
     }
 

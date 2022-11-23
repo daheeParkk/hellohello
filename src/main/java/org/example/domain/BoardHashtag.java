@@ -6,6 +6,12 @@ public class BoardHashtag {
     private Long boardId;
     private Long hashtagId;
 
+    public BoardHashtag(Long id, Long boardId, Long hashtagId) {
+        this.id = id;
+        this.boardId = boardId;
+        this.hashtagId = hashtagId;
+    }
+
     public Long getId() {
         return id;
     }

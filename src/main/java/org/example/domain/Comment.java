@@ -7,6 +7,13 @@ public class Comment {
     private Long userId;
     private Long boardId;
 
+    public Comment(Long id, String content, Long userId, Long boardId) {
+        this.id = id;
+        this.content = content;
+        this.userId = userId;
+        this.boardId = boardId;
+    }
+
     public Long getId() {
         return id;
     }

@@ -3,8 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.example.repository.BoardHashtagMapper">
 
+    <resultMap id="boardHashtagResultMap" type="org.example.domain.BoardHashtag">
+        <id column="id" property="id" />
+        <collection property="boardId" ofType="org.example.domain.Board">
+            <id column="id" property="id" />
+        </collection>
+        <collection property="hashtagId" ofType="org.example.domain.Hashtag">
+            <id column="id" property="id" />
+        </collection>
+    </resultMap>
+
     <select id="selectBoardHashtag" resultMap="boardHashtagResultMap">
-        SELECT *
+        SELECT id
         FROM board_hashtag
     </select>
 
@@ -21,19 +31,9 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteBoardHashtag" parameterType="Long">
+    <delete id="deleteBoardHashtag" parameterType="java.lang.Long">
         DELETE from board_hashtag
         where id = #{id}
     </delete>
-
-    <resultMap id="boardHashtagResultMap" type="org.example.domain.BoardHashtag">
-        <id column="id" property="id" />
-        <collection property="boardId" ofType="org.example.domain.Board">
-            <id column="id" property="id" />
-        </collection>
-        <collection property="hashtagId" ofType="org.example.domain.Hashtag">
-            <id column="id" property="id" />
-        </collection>
-    </resultMap>
 
 </mapper>

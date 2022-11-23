@@ -18,11 +18,11 @@ public class CategoryServiceImpl implements CategoryService {
         this.categoryMapper = categoryMapper;
     }
 
-    public List<Category> getCategoryList() {
+    public List<Category> selectCategoryList() {
         return categoryMapper.selectCategoryList();
     }
 
-    public Category getCategory(Long id) {
+    public Category selectCategory(Long id) {
         return categoryMapper.selectCategory(id);
     }
 

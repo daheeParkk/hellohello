@@ -16,7 +16,7 @@ public class CommentServiceImpl implements CommentService {
         this.commentMapper = commentMapper;
     }
 
-    public Comment getComment(Long id) {
+    public Comment selectComment(Long id) {
         return commentMapper.selectComment(id);
     }
 

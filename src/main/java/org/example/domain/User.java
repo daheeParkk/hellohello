@@ -9,7 +9,13 @@ public class User {
     private String email;
     private String number;
 
-    public User() {
+    public User(Long id, String name, String nickname, String password, String email, String number) {
+        this.id = id;
+        this.name = name;
+        this.nickname = nickname;
+        this.password = password;
+        this.email = email;
+        this.number = number;
     }
 
     public Long getId() {

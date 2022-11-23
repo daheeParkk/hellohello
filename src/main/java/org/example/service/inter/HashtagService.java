@@ -5,7 +5,7 @@ import org.example.domain.Hashtag;
 
 public interface HashtagService {
 
-    Hashtag getHashtag(Long id);
+    Hashtag selectHashtag(Long id);
     void createHashtag(Hashtag hashtag);
     void updateHashtag(Hashtag hashtag);
     void deleteHashtag(Long id);
