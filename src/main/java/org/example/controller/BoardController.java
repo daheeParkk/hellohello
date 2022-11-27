@@ -1,29 +1,36 @@
 package org.example.controller;
 
+import org.example.controller.dto.GetBoardResponse;
 import org.example.domain.Board;
+import org.example.domain.BoardHashtag;
+import org.example.service.inter.BoardHashtagService;
 import org.example.service.inter.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/board")
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardHashtagService boardHashtagService;
 
     @Autowired
-    public BoardController(BoardService boardService) {
+    public BoardController(BoardService boardService, BoardHashtagService boardHashtagService) {
         this.boardService = boardService;
+        this.boardHashtagService = boardHashtagService;
     }
 
-    @GetMapping("/")
-    public String getBoardList() {
-        return "ok";
+    @GetMapping
+    public List<GetBoardResponse> getBoardList() {
+        return boardService.selectBoardList();
     }
 
     @GetMapping("/{id}")
-    public String getBoard(@PathVariable("id") Long id) {
-        return "ok";
+    public Board getBoard(@PathVariable("id") Long id) {
+        return boardService.selectBoard(id);
     }
 
     @PostMapping("/")
@@ -40,6 +47,18 @@ public class BoardController {
 
     @DeleteMapping("/{id}")
     public String deleteBoard(@PathVariable("id") Long id) {
+        return "ok";
+    }
+
+    @PostMapping("/hashtag")
+    public String createBoardHashtag(@RequestBody BoardHashtag boardHashtag) {
+        boardHashtagService.createBoardHashtag(boardHashtag);
+        return "ok";
+    }
+
+    @DeleteMapping("/hashtag")
+    public String deleteBoardHashtag(@RequestBody BoardHashtag boardHashtag) {
+        boardHashtagService.deleteBoardHashtag(boardHashtag);
         return "ok";
     }
 }

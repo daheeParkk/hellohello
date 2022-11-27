@@ -31,9 +31,9 @@
         where id = #{id}
     </update>
 
-    <delete id="deleteBoardHashtag" parameterType="java.lang.Long">
+    <delete id="deleteBoardHashtag" parameterType="org.example.domain.BoardHashtag">
         DELETE from board_hashtag
-        where id = #{id}
+        where board_id = #{boardId} and hashtag_id = #{hashtagId}
     </delete>
 
 </mapper>

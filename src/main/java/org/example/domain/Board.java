@@ -1,19 +1,29 @@
 package org.example.domain;
 
+import java.util.List;
+
 public class Board {
 
     private Long id;
     private String title;
     private String content;
-    private Long userId;
-    private Long categoryId;
+    private User user;
+    private List<Hashtag> hashtag;
+    private Category category;
 
-    public Board(Long id, String title, String content, Long userId, Long categoryId) {
+    private List<Comment> comments;
+
+    public Board(Long id, String title, String content, User user, List<Hashtag> hashtag, Category category, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
-        this.userId = userId;
-        this.categoryId = categoryId;
+        this.user = user;
+        this.hashtag = hashtag;
+        this.category = category;
+        this.comments = comments;
+    }
+
+    public Board() {
     }
 
     public Long getId() {
@@ -40,19 +50,43 @@ public class Board {
         this.content = content;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Hashtag> getHashtag() {
+        return hashtag;
+    }
+
+    public void setHashtag(List<Hashtag> hashtag) {
+        this.hashtag = hashtag;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Long getUserId() {
-        return userId;
+        return this.user.getId();
     }
 
     public void setUserId(Long userId) {
-        this.userId = userId;
+        this.user.setId(userId);
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

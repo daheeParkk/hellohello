@@ -5,6 +5,7 @@ public class Comment {
     private Long id;
     private String content;
     private Long userId;
+    private String nickname;
     private Long boardId;
 
     public Comment(Long id, String content, Long userId, Long boardId) {
@@ -12,6 +13,9 @@ public class Comment {
         this.content = content;
         this.userId = userId;
         this.boardId = boardId;
+    }
+
+    public Comment() {
     }
 
     public Long getId() {
@@ -44,5 +48,11 @@ public class Comment {
 
     public void setBoardId(Long boardId) {
         this.boardId = boardId;
+    }
+
+    public String getNickname() { return this.nickname; }
+
+    public String setNickname(String nickname) {
+        return this.nickname = nickname;
     }
 }

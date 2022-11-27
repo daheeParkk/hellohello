@@ -7,35 +7,47 @@
         <id column="id" property="id" />
         <result column="title" property="title" />
         <result column="content" property="content" />
-        <association property="userId" column="user_id" javaType="org.example.domain.User">
-            <id column="id" property="id" />
+        <association property="user" column="user_id" javaType="org.example.domain.User">
+            <id column="userId" property="id" />
             <result column="nickname" property="nickname" />
         </association>
-        <association property="categoryId" column="category_id" javaType="org.example.domain.Category">
+        <association property="category" column="category_id" javaType="org.example.domain.Category">
             <id column="id" property="id" />
-            <result column="content" property="content" />
+            <result column="category" property="content" />
         </association>
-        <collection property="boardId" ofType="org.example.domain.Comment">
+        <collection column="id" property="comments" javaType="java.util.ArrayList" ofType="org.example.domain.Comment" select="selectCommentBoard">
             <id column="id" property="id" />
-            <result column="content" property="content" />
+            <result column="nickname" property="nickname"/>
         </collection>
     </resultMap>
 
     <select id="selectBoardList" resultMap="boardResultMap">
-        SELECT id, title,content
-        FROM board
+        SELECT b.id, u.id AS userId, u.nickname, b.title, b.content, c.content as category, h.content as hashtag
+        FROM board b left outer join user u on b.user_id = u.id
+                     left outer join category c on b.category_id = c.id
+                     left outer join board_hashtag bh on b.id = bh.board_id
+                     left outer join hashtag h on h.id = bh.hashtag_id;
     </select>
 
-    <select id="selectBoard" parameterType="java.lang.Long" resultMap="boardResultMap">
-        SELECT id, title, content
-        FROM board
-        WHERE id = #{id}
+    <select id="selectBoard" resultMap="boardResultMap">
+        select b.id, u.id AS userId, u.nickname, b.title, b.content, c.content as category, h.content as hashtag
+        FROM board b left outer join user u on b.user_id = u.id
+                     left outer join category c on b.category_id = c.id
+                     left outer join board_hashtag bh on b.id = bh.board_id
+                     left outer join hashtag h on h.id = bh.hashtag_id
+        WHERE b.id = #{id}
+    </select>
+
+    <select id="selectCommentBoard" resultType="org.example.domain.Comment">
+        SELECT u.nickname, u.id AS userId, c.id, c.content
+        FROM comment c LEFT OUTER JOIN user u on c.user_id = u.id
+        WHERE c.board_id = #{id}
     </select>
 
     <insert id="createBoard" parameterType="org.example.domain.Board">
         INSERT INTO board
-            (title, content)
-        VALUES (#{title}, #{content});
+            (title, content, user_id, category_id)
+        VALUES (#{title}, #{content}, #{userId}, #{categoryId});
     </insert>
 
     <update id="updateBoard" parameterType="org.example.domain.Board">
@@ -54,13 +66,14 @@
 
     <select id="boardWriter" resultMap="boardResultMap" parameterType="java.lang.Long">
         select
-            B.userId,
+            B.user_id,
             A.nickname ,
             B.title ,
             B.content,
             M.content,
-            C.content
-        from board B left outer join user A on B.userId = A.id left outer join category C on B.categoryId = C.id left outer join comment M on B.id = M.boardId;
+            C.content,
+            H.content,
+        from board B left outer join user A on B.user_id = A.id left outer join category C on B.category_id = C.id left outer join comment M on B.id = M.boardId;
         where B.id = #{id};
     </select>
 

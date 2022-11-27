@@ -27,19 +27,19 @@ public class UserController {
         return "ok";
     }
 
-    @PostMapping("/c")
+    @PostMapping("/")
     public String createUser(@RequestBody User user) {
         userService.createUser(user);
         return "ok";
     }
 
-    @PatchMapping("/u")
+    @PatchMapping("/")
     public String updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return "ok";
     }
 
-    @DeleteMapping("/d/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Long id) {
         return "ok";
     }

@@ -28,7 +28,7 @@ public class BoardHashtagServiceImpl implements BoardHashtagService {
         boardHashtagMapper.updateBoardHashtag(boardHashtag);
     }
 
-    public void deleteBoardHashtag(Long id) {
-        boardHashtagMapper.deleteBoardHashtag(id);
+    public void deleteBoardHashtag(BoardHashtag boardHashtag) {
+        boardHashtagMapper.deleteBoardHashtag(boardHashtag);
     }
 }

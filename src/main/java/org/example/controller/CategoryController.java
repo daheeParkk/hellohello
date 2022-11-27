@@ -27,19 +27,19 @@ public class CategoryController {
         return "ok";
     }
 
-    @PostMapping("/c")
+    @PostMapping("/")
     public String createCategory(@RequestBody Category category) {
         categoryService.createCategory(category);
         return "ok";
     }
+
     @PutMapping
-    @PatchMapping("/u")
     public String updateCategory(@RequestBody Category category) {
         categoryService.updateCategory(category);
         return "ok";
     }
 
-    @DeleteMapping("/d/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
         return "ok";
     }

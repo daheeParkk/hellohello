@@ -12,6 +12,9 @@ public class BoardHashtag {
         this.hashtagId = hashtagId;
     }
 
+    public BoardHashtag() {
+    }
+
     public Long getId() {
         return id;
     }

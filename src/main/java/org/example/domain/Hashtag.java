@@ -10,6 +10,9 @@ public class Hashtag {
         this.content = content;
     }
 
+    public Hashtag() {
+    }
+
     public Long getId() {
         return id;
     }

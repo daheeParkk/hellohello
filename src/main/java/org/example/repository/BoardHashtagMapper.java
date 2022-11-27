@@ -12,5 +12,5 @@ public interface BoardHashtagMapper {
 
     void updateBoardHashtag(BoardHashtag boardHashtag);
 
-    void deleteBoardHashtag(Long id);
+    void deleteBoardHashtag(BoardHashtag boardHashtag);
 }
