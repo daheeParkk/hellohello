@@ -1,4 +1,4 @@
-package org.example.controller.dto;
+package org.example.dto.board;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.example.domain.Board;

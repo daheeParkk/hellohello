@@ -1,31 +1,29 @@
-package org.example.service.impl;
+package org.example.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.example.service.inter.JWTService;
+import org.example.domain.User;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Service
-public class JWTServiceImpl implements JWTService {
-
+@Component
+public class JWTUtil {
     @Value("${jwt.secret_key}")
     private String key;
 
-    @Override
-    public String crateToken() {
+    public String crateToken(Long id) {
         Map<String, Object> headers = new HashMap<>();
         headers.put("typ", "JWT");
         headers.put("alg", "HS256");
 
-        Map<String, Object> paylaods = new HashMap<>();
-        paylaods.put("data", "First JWT !!");
+        Map<String, Object> payloads = new HashMap<>();
+        payloads.put("data", id);
 
         Long expiredTime = 1000 * 60L * 60L * 2L;
 
@@ -34,8 +32,7 @@ public class JWTServiceImpl implements JWTService {
 
         String jwt = Jwts.builder()
                 .setHeader(headers)
-                .setClaims(paylaods)
-                .setSubject("user")
+                .setClaims(payloads)
                 .setExpiration(ext)
                 .signWith(SignatureAlgorithm.HS256, key.getBytes())
                 .compact();
@@ -43,7 +40,6 @@ public class JWTServiceImpl implements JWTService {
         return jwt;
     }
 
-    @Override
     public Map<String, Object> verifyJWT(String jwt) {
         Map<String, Object> claimMap = null;
         try {

@@ -2,9 +2,12 @@ package org.example.controller;
 
 import org.example.domain.Category;
 import org.example.domain.User;
+import org.example.dto.user.RequestLogin;
 import org.example.service.inter.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -44,5 +47,9 @@ public class UserController {
         return "ok";
     }
 
+    @PostMapping("/login")
+    public Map<String, String> login(@RequestBody RequestLogin requestLogin) {
+        return userService.login(requestLogin);
+    }
 
 }

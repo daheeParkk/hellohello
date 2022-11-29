@@ -1,6 +1,6 @@
 package org.example.service.inter;
 
-import org.example.controller.dto.GetBoardResponse;
+import org.example.dto.board.GetBoardResponse;
 import org.example.domain.Board;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.controller.dto.GetBoardResponse;
+import org.example.dto.board.GetBoardResponse;
 import org.example.domain.Board;
 import org.example.domain.BoardHashtag;
 import org.example.service.inter.BoardHashtagService;

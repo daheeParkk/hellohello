@@ -21,6 +21,12 @@
         <result column="number" property="number" />
     </resultMap>
 
+    <select id="selectUserByNickname" resultMap="userResultMap">
+        SELECT id, nickname, password
+        FROM user
+        WHERE nickname = #{nickname}
+    </select>
+
     <select id="selectUserList" resultMap="userResultListMap">
         SELECT *
         FROM user

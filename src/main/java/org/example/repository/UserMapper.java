@@ -4,6 +4,7 @@ import org.example.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserMapper {
@@ -17,4 +18,6 @@ public interface UserMapper {
     void updateUser(User user);
 
     void deleteUser(Long id);
+
+    User selectUserByNickname(String nickname);
 }

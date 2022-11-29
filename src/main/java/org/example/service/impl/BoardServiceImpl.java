@@ -1,6 +1,6 @@
 package org.example.service.impl;
 
-import org.example.controller.dto.GetBoardResponse;
+import org.example.dto.board.GetBoardResponse;
 import org.example.domain.Board;
 import org.example.repository.BoardMapper;
 import org.example.service.inter.BoardService;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
