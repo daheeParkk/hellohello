@@ -20,4 +20,6 @@ public interface UserMapper {
     void deleteUser(Long id);
 
     User selectUserByNickname(String nickname);
+
+    int selectNicknameByNickname(String nickname);
 }

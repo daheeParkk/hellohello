@@ -27,6 +27,12 @@
         WHERE nickname = #{nickname}
     </select>
 
+    <select id="selectNicknameByNickname" resultType="int">
+        SELECT count(nickname)
+        FROM user
+        WHERE nickname = #{nickname}
+    </select>
+
     <select id="selectUserList" resultMap="userResultListMap">
         SELECT *
         FROM user

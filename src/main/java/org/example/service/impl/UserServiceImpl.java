@@ -7,7 +7,6 @@ import org.example.service.inter.UserService;
 import org.example.util.BcryptUtil;
 import org.example.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -27,8 +26,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserMapper userMapper, JWTUtil jwtUtil, BcryptUtil bcryptUtil) {
         this.userMapper = userMapper;
         this.jwtUtil = jwtUtil;
-        this.bcryptUtil = bcryptUtil;
-    }
+        this.bcryptUtil = bcryptUtil;}
 
     public List<User> selectUserList() {
         return userMapper.selectUserList();
@@ -39,9 +37,20 @@ public class UserServiceImpl implements UserService {
     }
 
     public void createUser(User user) {
+
+        Map<String, String> response = new HashMap<>();
+
+
         // TODO nickname 중복 확인
-        String encryptedPassword = bcryptUtil.encrypt(user.getPassword());
-        userMapper.createUser(user);
+        String nick = user.getNickname();
+        if (userMapper.selectNicknameByNickname(nick) == 1) {
+            response.put("result", "nickname already exists");
+
+        }else {
+            String encryptedPassword = bcryptUtil.encrypt(user.getPassword());
+            user.setPassword(encryptedPassword);
+            userMapper.createUser(user);
+        }
     }
 
     public void updateUser(User user) {
