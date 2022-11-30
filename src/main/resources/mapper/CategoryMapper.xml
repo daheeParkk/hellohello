@@ -8,12 +8,7 @@
         <result column="content" property="content" />
     </resultMap>
 
-    <resultMap id="categoryListResultMap" type="java.util.List">
-        <id column="id" property="id" />
-        <result column="content" property="content" />
-    </resultMap>
-
-    <select id="selectCategoryList" resultMap="categoryListResultMap">
+    <select id="selectCategoryList" resultMap="categoryResultMap">
         SELECT id, content
         FROM category
     </select>

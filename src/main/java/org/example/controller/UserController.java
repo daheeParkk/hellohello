@@ -7,6 +7,7 @@ import org.example.service.inter.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -21,13 +22,13 @@ public class UserController {
     }
 
     @GetMapping
-    public String getUserList() {
-        return "ok";
+    public List<User> getUserList() {
+        return userService.selectUserList();
     }
 
     @GetMapping("/{id}")
-    public String getUser(@PathVariable("id") Long id) {
-        return "ok";
+    public User getUser(@PathVariable("id") Long id) {
+        return userService.selectUser(id);
     }
 
     @PostMapping("/")

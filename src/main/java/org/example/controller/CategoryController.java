@@ -6,6 +6,8 @@ import org.example.service.inter.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -18,13 +20,13 @@ public class CategoryController {
     }
 
     @GetMapping
-    public String getCategoryList() {
-        return "ok";
+    public List<Category> getCategoryList() {
+        return categoryService.selectCategoryList();
     }
 
     @GetMapping("/{id}")
-    public String getCategory(@PathVariable("id") Long id) {
-        return "ok";
+    public Category getCategory(@PathVariable("id") Long id) {
+        return categoryService.selectCategory(id);
     }
 
     @PostMapping("/")

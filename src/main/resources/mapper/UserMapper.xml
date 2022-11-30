@@ -12,15 +12,6 @@
         <result column="number" property="number" />
     </resultMap>
 
-    <resultMap id="userResultListMap" type="java.util.List">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="nickname" property="nickname" />
-        <result column="password" property="password" />
-        <result column="email" property="email" />
-        <result column="number" property="number" />
-    </resultMap>
-
     <select id="selectUserByNickname" resultMap="userResultMap">
         SELECT id, nickname, password
         FROM user
@@ -33,7 +24,7 @@
         WHERE nickname = #{nickname}
     </select>
 
-    <select id="selectUserList" resultMap="userResultListMap">
+    <select id="selectUserList" resultMap="userResultMap">
         SELECT *
         FROM user
     </select>
